@@ -1,1 +1,145 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  /* outline: 1px solid red; */
+}
+body{
+    background-image: url("./assets/background/12760781_4Z_2101.w026.n002.68B.p1.68.jpg");
+    background-size: cover;
+    background-color: burlywood;
+    overflow-x: hidden;
+    background-repeat: no-repeat;
+}
+
+h1{
+  font-size: 7em;
+}
+h2{
+  font-size: 40px;
+}
+p{
+  font-size: 20px;
+  font-weight: 700;
+}
+
+h1,h2,p{
+  color: #c3bfbf;
+}
+
+.sidebar{
+  backdrop-filter: blur(4px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.41);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  height: 100vh;
+} 
+button{
+  background: none;
+  border: none;
+}
+button i{
+  font-size: 45px;
+  color: #c3bfbf;
+}
+
+.weather-info{
+  display: flex;
+  align-items: flex-end;
+}
+
+.temp-img{
+  height: 70px;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+input {
+  border: 0;
+  border-bottom: 2px solid #9e9e9e;
+  outline: none;
+  transition: .2s ease-in-out;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+label {
+  top: 0;
+  left: 0; right: 0;
+  color: #616161;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  font-size: 1rem;
+  cursor: text;
+  transition: .2s ease-in-out;
+  box-sizing: border-box;
+}
+
+input,
+label {
+  width: 100%;
+  height: 3rem;
+  font-size: 1rem;
+  background: none;
+}
+
+/* Interation */
+input:valid,
+input:focus {
+  border-bottom: 2px solid #26a69a;  
+}
+input:valid + label,
+input:focus + label {
+  /* color: #26a69a; */
+  color: #fff;
+  font-size: .8rem;
+  top: -30px;
+  pointer-events: none;
+}
+.divider{
+  background-color: #9E9E9E;
+  height: 2px;
+  width: 91%;
+  position: absolute;
+  top: 70%;
+}
+i{
+  color: #e5e1e1;
+  cursor: pointer;
+}
+i:hover{
+  color: #1b233a;
+}
+li{
+  color: #e5e1e1;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.history{
+  height: 19em;
+  overflow-x: auto;
+}
+.history::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.history::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.history::-webkit-scrollbar-thumb {
+  background: #1b233a; 
+}
+
+/* Handle on hover */
+.history::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+.history-list{
+  padding: 0px 43px;
+}

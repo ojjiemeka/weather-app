@@ -1,0 +1,53 @@
+<section>
+    <div class="row">
+        <div class="col-lg-9 weather-info p-4" >
+            <div class="align-items-center d-flex jus justify-content-evenly w-100">
+                <div class="d-flex">
+                    <h1>{{temp_c}}</h1>
+                    <img class="temp-img" src="https://img.icons8.com/external-flat-adri-ansyah/64/000000/external-user-home-screen-apps-flat-adri-ansyah-21.png"/>
+                </div>
+                <div class="mx-5">
+                    <h2>{{city}}</h2>
+                    <p>{{current_date}}</p>
+                </div>
+                <div class="weather-img mx-5 text-center">
+                    <img src="{{forecast_img}}" alt="" srcset="">
+                    <p>{{forecast}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 sidebar">
+            <form #form="ngForm" (ngSubmit)="searchLocation(form)">
+                <div class="d-flex p-4 justify-content-between">
+                    <div class="input-container">
+                        <input id="name" 
+                        class="input" 
+                        type="text" 
+                        pattern=".+" 
+                        required  
+                        name="location"
+                        #sku="ngModel"
+                        [(ngModel)]="model.location" />
+                        <label class="label" for="name">Another Location</label>
+                    </div>
+                    <div>
+                        <button type="submit" class="">
+                            <i class='bx bx-search-alt-2'></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="history" *ngIf="history">
+                <ul *ngFor="let item of history" class="align-items-baseline d-flex justify-content-between history-list">
+                    <li class="mb-2"  (click)="searchFromHistory(item)">{{item}}</li>
+                    <i class='bx bx-trash bx-sm' (click)="deleteHistory(item)"></i>
+                </ul>
+            </div>
+
+            <div>
+                <div class="divider"></div>
+            </div>
+        </div>
+    </div>
+</section>

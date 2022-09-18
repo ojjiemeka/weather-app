@@ -22,6 +22,9 @@ export class IndexComponent implements OnInit {
   temp_c : string|undefined
   temp_f : string|undefined
   model: Search = new Search();
+  historyList: Search [] = [];
+  history: any;
+  message: any;
 
   constructor(
     private weatherServ: WeatherService
@@ -29,6 +32,7 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIP();
+    this.getHistory();
     // this.getUserLocation(this.userLoc);
   }
 
@@ -36,7 +40,6 @@ export class IndexComponent implements OnInit {
     this.weatherServ.getIPAddress().subscribe(
       res => {
         this.myIP = res;
-        // console.log(this.myIP.ip);
         this.weatherServ.getIpLocation(this.myIP.ip).subscribe(
           loc => {
             this.ipLocation = loc;
@@ -45,27 +48,14 @@ export class IndexComponent implements OnInit {
             var nowDate = new Date(); 
             var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate();
             this.current_date = date;
-            // console.log(date)
-            // console.log(this.userLoc);
-
             this.weatherServ.getIpWeatherStats(this.userLoc, date).subscribe(
               data =>{
                 this.data = data;
-                // console.log(this.data.location.name);
                 this.city = this.data.location.name
-
-                // console.log(this.data.forecast.forecastday);
-
-                // console.log(this.data.forecast.forecastday[0].day.condition.text);
                 this.forecast = this.data.forecast.forecastday[0].day.condition.text
                 this.temp_c = this.data.forecast.forecastday[0].day.avgtemp_c
                 this.temp_f = this.data.forecast.forecastday[0].day.avgtemp_f
-
-
-
-                // console.log(this.data.forecast.forecastday[0].day.condition.icon);
                 this.forecast_img = this.data.forecast.forecastday[0].day.condition.icon
-                // this.city = info.location.name
               }
             )
           }
@@ -78,26 +68,56 @@ export class IndexComponent implements OnInit {
     if (!form.valid) {
       return;
     }
+
     this.weatherServ.getSearch(this.model.location, this.current_date).subscribe(
       data => {
-        // console.log(data);
         this.data = data;
-        // console.log(this.data.location.name);
         this.city = this.data.location.name
-
-        // console.log(this.data.forecast.forecastday);
-
-        // console.log(this.data.forecast.forecastday[0].day.condition.text);
-        this.forecast = this.data.forecast.forecastday[0].day.condition.text
-        this.temp_c = this.data.forecast.forecastday[0].day.avgtemp_c
-        this.temp_f = this.data.forecast.forecastday[0].day.avgtemp_f
-
-        // console.log(this.data.forecast.forecastday[0].day.condition.icon);
-        this.forecast_img = this.data.forecast.forecastday[0].day.condition.IndexComponent
-
+        this.forecast = this.data.forecast.forecastday[0].day.condition.text;
+        this.temp_c = this.data.forecast.forecastday[0].day.avgtemp_c;
+        this.temp_f = this.data.forecast.forecastday[0].day.avgtemp_f;
+        this.forecast_img = this.data.forecast.forecastday[0].day.condition.icon;
         
+        if(this.historyList.includes(this.model.location)){
+          console.log('location exists');
+          this.message = 'location exists';
+        }else{
+          this.historyList.push(this.model.location);
+          localStorage.setItem('searchHistory', JSON.stringify(this.historyList));
+          this.history = JSON.parse(localStorage.getItem("searchHistory") || '{}').reverse();
+        }
       }
     )
+  }
+
+  getHistory(){
+    this.history = JSON.parse(localStorage.getItem("searchHistory") || '{}')
+  }
+
+  searchFromHistory(item: any){
+    this.weatherServ.getSearch(item, this.current_date).subscribe(
+      data => {
+        this.data = data;
+        this.city = this.data.location.name
+        this.forecast = this.data.forecast.forecastday[0].day.condition.text;
+        this.temp_c = this.data.forecast.forecastday[0].day.avgtemp_c;
+        this.temp_f = this.data.forecast.forecastday[0].day.avgtemp_f;
+        this.forecast_img = this.data.forecast.forecastday[0].day.condition.icon;
+        // console.log(this.forecast_img);
+        }
+    )
+  }
+
+  deleteHistory(item: any){
+    this.historyList.forEach((element,index)=>{
+      if(element==item) 
+      this.historyList.splice(index,1);
+      localStorage.setItem('searchHistory', JSON.stringify(this.historyList));
+      this.history = JSON.parse(localStorage.getItem("searchHistory") || '{}').reverse();
+      console.log(this.historyList);
+      // console.log(element);
+    });
+
   }
 
 }
