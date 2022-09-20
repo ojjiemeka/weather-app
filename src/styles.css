@@ -2,12 +2,13 @@
 * {
   /* outline: 1px solid red; */
 }
-body{
+.section-body{
     background-image: url("./assets/background/12760781_4Z_2101.w026.n002.68B.p1.68.jpg");
-    background-size: cover;
-    background-color: burlywood;
+    background-size: cover !important;
+    background-color: burlywood !important;
     overflow-x: hidden;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
 }
 
 h1{
@@ -101,28 +102,39 @@ input:focus + label {
 .divider{
   background-color: #9E9E9E;
   height: 2px;
-  width: 91%;
+  width: 100%;
   position: absolute;
-  top: 70%;
+  top: 48%;
+  left: 0%;
 }
-i{
+button i{
+  color: #1b233a;
+}
+button i:hover{
+  color: #e5e1e1;
+}
+ul i{
   color: #e5e1e1;
   cursor: pointer;
 }
-i:hover{
+ul i:hover{
   color: #1b233a;
 }
 li{
   color: #e5e1e1;
-  font-size: 18px;
   font-weight: 500;
   cursor: pointer;
 }
 .history{
-  height: 19em;
+  height: 13em;
   overflow-x: auto;
 }
-.history::-webkit-scrollbar {
+.weather-details{
+  overflow-x: auto;
+  margin-top: -7px;
+}
+.history::-webkit-scrollbar,
+.weather-details::-webkit-scrollbar {
   width: 10px;
 }
 
@@ -130,16 +142,41 @@ li{
 .history::-webkit-scrollbar-track {
   background: #f1f1f1; 
 }
+.weather-details::-webkit-scrollbar-track {
+  background: #6d607c; 
+}
  
 /* Handle */
-.history::-webkit-scrollbar-thumb {
+.history::-webkit-scrollbar-thumb,
+.weather-details::-webkit-scrollbar-thumb
+ {
   background: #1b233a; 
 }
 
 /* Handle on hover */
-.history::-webkit-scrollbar-thumb:hover {
+.history::-webkit-scrollbar-thumb:hover,
+.weather-details::-webkit-scrollbar-thumb:hover
+ {
   background: #555; 
 }
 .history-list{
   padding: 0px 43px;
+}
+.weather-time{
+  color: #f1f1f1;
+}
+.sunrise,
+.sunset{
+  margin-top: -15px;
+}
+.sunrise-icon,
+.sunset-icon{
+  width: 70%;
+}
+.weather-conditon,
+.search,
+.sunrise,
+.sunset,
+li{
+  font-size: 14px;
 }
