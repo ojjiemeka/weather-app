@@ -155,6 +155,24 @@ export class IndexComponent implements OnInit {
         this.temp_f = this.data.forecast.forecastday[0].day.avgtemp_f;
         this.forecast_img = this.data.forecast.forecastday[0].day.condition.icon;
         // console.log(this.forecast_img);
+        let hours = this.data.forecast.forecastday.map(
+          (r: any)=> r.hour
+          );
+        // console.log(hours);
+
+        let time: any[] = []
+        for (let index = 0; index < hours.length; index++) {
+          time = [...time, ...hours[index]]  
+        }
+        // console.log(this.hourlyForcastTime);
+        this.hourlyForcast = time;
+
+        this.weatherServ.getBackgroundImage(this.city).subscribe(
+          (img: any) =>{
+            this.backgroundImage = img.urls.regular
+            // console.log(this.backgroundImage)
+          }
+        );
         }
     )
   }

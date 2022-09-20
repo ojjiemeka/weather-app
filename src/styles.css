@@ -23,7 +23,8 @@ p{
 }
 
 h1,h2,p{
-  color: #c3bfbf;
+  /* color: #c3bfbf; */
+  color: #e1dede;;
 }
 
 .sidebar{
@@ -41,9 +42,15 @@ button i{
   color: #c3bfbf;
 }
 
-.weather-info{
+.weather-section{
   display: flex;
   align-items: flex-end;
+}
+.weather-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .temp-img{
@@ -179,4 +186,79 @@ li{
 .sunset,
 li{
   font-size: 14px;
+}
+@media only screen and (max-width: 320px) {
+  .weather-info{
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
+  .weather-details {
+    overflow-x: auto;
+    margin-top: 16px;
+  }
+  .sidebar {
+    height: 100%;
+  }
+  .bottom-section{
+    margin-top: 2em !important;
+  }
+  .weather-section {
+    height: 70vh;
+  }
+  .temp{
+    display: block !important;
+  }
+}
+@media only screen and (min-width: 360px) {
+  .weather-info{
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
+  .weather-details {
+    overflow-x: auto;
+    margin-top: 16px;
+  }
+  .sidebar {
+    height: 100%;
+  }
+  .bottom-section{
+    margin-top: 2em !important;
+  }
+  .weather-section {
+    height: 70vh;
+  }
+  .temp{
+    display: block !important;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .temp {
+    display: flex !important;
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .weather-info{
+    display: flex !important;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .weather-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  .sidebar {
+    height: auto;
+  }
+  .weather-details {
+    overflow-x: auto;
+    margin-top: -10px;
+  }
+  .temp {
+    display: flex !important;
+  }
 }
