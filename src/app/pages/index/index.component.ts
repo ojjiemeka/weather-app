@@ -49,6 +49,8 @@ export class IndexComponent implements OnInit {
             this.ipLocation = loc;
             this.userLoc = this.ipLocation.city
 
+            // console.log(this.userLoc);
+
             var nowDate = new Date(); 
             var date = nowDate.getFullYear()+'/'+(nowDate.getMonth()+1)+'/'+nowDate.getDate();
             this.current_date = date;

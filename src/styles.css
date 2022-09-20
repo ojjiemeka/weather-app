@@ -200,9 +200,9 @@ li{
   .sidebar {
     height: 100%;
   }
-  .bottom-section{
+  /* .bottom-section{
     margin-top: 2em !important;
-  }
+  } */
   .weather-section {
     height: 70vh;
   }
@@ -223,9 +223,9 @@ li{
   .sidebar {
     height: 100%;
   }
-  .bottom-section{
+  /* .bottom-section{
     margin-top: 2em !important;
-  }
+  } */
   .weather-section {
     height: 70vh;
   }

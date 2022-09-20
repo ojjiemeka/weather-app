@@ -11,19 +11,25 @@ export class WeatherService {
     private http: HttpClient,
   ) { }
 
-  $getIP = "http://api.ipify.org/?format=json";
-  $ip_Location = "http://ip-api.com/json/";
+  $getIP = "https://api.ipify.org/?format=json";
+  // $ip_Location = "https://ip-api.com/json/";
+  $ip_Location = "https://api.ipgeolocation.io/ipgeo";
   $weather_URL = "https://weatherapi-com.p.rapidapi.com/history.json?";
   $background_url = "https://api.unsplash.com/photos/random?";
 
   getIPAddress()
   {
-    const heders = new HttpHeaders();
-    return this.http.get(this.$getIP)
+    const headers = new HttpHeaders();
+    return this.http.get(this.$getIP, {headers : headers} )
   }
 
-  getIpLocation(res: any){
-    return this.http.get(this.$ip_Location + '/' + res)
+  getIpLocation(location: any){
+    const API_KEY = "46ae538879e74b9b99d0fb490184ee64";
+    let locParams = new HttpParams()
+    .append("ip",location)
+    .append("apiKey",API_KEY);
+
+    return this.http.get(this.$ip_Location, {params : locParams} )
   }
 
   getIpWeatherStats(location: string, date: string){
